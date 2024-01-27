@@ -282,8 +282,16 @@ function addImages() {
 
   window.addEventListener("resize", () => {
     // Update sizes
-    sizes.width = window.innerWidth;
-    sizes.height = window.innerHeight;
+    if (
+      canvas.width != canvas.clientWidth ||
+      canvas.height != canvas.clientHeight
+    ) {
+      canvas.width = canvas.clientWidth;
+      canvas.height = canvas.clientHeight;
+      renderer.setViewport(0, 0, canvas.width, canvas.height);
+    }
+    sizes.width = canvas.width;
+    sizes.height = canvas.height;
 
     // Update camera
     camera.aspect = sizes.width / sizes.height;
