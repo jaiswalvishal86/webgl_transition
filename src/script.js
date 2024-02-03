@@ -176,13 +176,13 @@ function addImages() {
 
       tl.to(m.uniforms.uCorners.value, {
         x: 1,
-        duration: 0.4,
+        duration: 0.5,
       })
         .to(
           m.uniforms.uCorners.value,
           {
             y: 1,
-            duration: 0.4,
+            duration: 0.5,
           },
           0.1
         )
@@ -190,7 +190,7 @@ function addImages() {
           m.uniforms.uCorners.value,
           {
             z: 1,
-            duration: 0.4,
+            duration: 0.5,
           },
           0.2
         )
@@ -198,7 +198,7 @@ function addImages() {
           m.uniforms.uCorners.value,
           {
             w: 1,
-            duration: 0.4,
+            duration: 0.5,
           },
           0.3
         );
@@ -364,15 +364,18 @@ function addImages() {
    * Animate
    */
   const clock = new THREE.Clock();
+  let previousTime = 0;
 
   const tick = () => {
     const elapsedTime = clock.getElapsedTime();
+    const deltaTime = elapsedTime - previousTime;
+    previousTime = elapsedTime;
 
     // Update controls
     // controls.update();
 
     //send variables to shaders
-    // material.uniforms.uTime.value = elapsedTime;
+    material.uniforms.uTime.value = elapsedTime;
     // material.uniforms.uProgress.value = settings.progress;
     // tl.progress(settings.progress);
 

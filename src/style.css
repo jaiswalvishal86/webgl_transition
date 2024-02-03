@@ -131,6 +131,7 @@ a {
   background-position: center;
   object-fit: cover;
   max-width: none;
+  rotate: y 180deg;
 }
 
 .work-page-content {

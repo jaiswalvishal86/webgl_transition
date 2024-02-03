@@ -13,9 +13,10 @@ void main(){
     vUv = uv;
     float sine = sin(PI * uProgress);
     // float waves = sine * 0.1 * sin(5. * length(uv) + 10. * uProgress);
+
     vec4 defaultStates = modelMatrix * vec4(position, 1.0);
     vec4 fullScreenStates = vec4(position, 1.0);
-    fullScreenStates.x *= uResolution.x; 
+    fullScreenStates.x *= -uResolution.x; 
     fullScreenStates.y *= uResolution.y;
     fullScreenStates.z += uCorners.x;
     float cornersProgress = mix(
@@ -27,10 +28,6 @@ void main(){
     vec4 finalStates = mix(defaultStates, fullScreenStates, cornersProgress);
 
     vSize = mix(uQuadSize, uResolution, cornersProgress);
-
-    // vec3 newPosition = position;
-    // newPosition.z += 0.05*sin(length(position) * 30. + uTime);
-    // pulse = 20. * newPosition.z;
     
     gl_Position = projectionMatrix * viewMatrix * finalStates;
 }
